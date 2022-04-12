@@ -53,7 +53,7 @@ module.exports ={
             description : req.body.description,
             address : req.body.address,
             guest_id : req.body.guest_id,
-            create_dtm : new Date().getTime()
+            create_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         pool.getConnection(function(err, connection) {
             if (err) throw err;
@@ -78,7 +78,7 @@ module.exports ={
             description : req.body.description,
             address : req.body.address,
             guest_id : req.body.guest_id,
-            update_dtm : new Date().getTime()
+            update_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         let id = req.body.id
         pool.getConnection(function(err, connection) {

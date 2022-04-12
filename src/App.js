@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const router = app.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use('/', router);
+const indexRoute = require('./routes');
+app.use('/', indexRoute);
 
-app.listen(8080, ()=>{
-    console.log('Server Berjalan di Port : 8080');
+app.listen(8000, ()=>{
+    console.log('Server Berjalan di Port : 8000');
 });

@@ -52,7 +52,7 @@ module.exports ={
         let data = {
             name : req.body.name,
             attend : req.body.attend,
-            create_dtm : new Date().getTime()
+            create_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         pool.getConnection(function(err, connection) {
             if (err) throw err;
@@ -76,7 +76,7 @@ module.exports ={
         let dataEdit = {
             name : req.body.name,
             attend : req.body.attend,
-            update_dtm : new Date().getTime()
+            update_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         let id = req.body.id
         pool.getConnection(function(err, connection) {

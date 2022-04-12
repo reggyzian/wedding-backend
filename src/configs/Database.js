@@ -3,5 +3,5 @@ module.exports = {
     host                : 'localhost',
     user                : 'root',
     password            : '',
-    database            : 'wedding_backend'
+    database            : 'wedding_invitation'
 };
