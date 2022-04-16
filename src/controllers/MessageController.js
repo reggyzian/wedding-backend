@@ -51,7 +51,7 @@ module.exports ={
     add(req,res){
         let data = {
             description : req.body.description,
-            address : req.body.address,
+            relation : req.body.relation,
             guest_id : req.body.guest_id,
             create_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
@@ -76,7 +76,7 @@ module.exports ={
     update(req,res){
         let dataEdit = {
             description : req.body.description,
-            address : req.body.address,
+            relation : req.body.relation,
             guest_id : req.body.guest_id,
             update_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
