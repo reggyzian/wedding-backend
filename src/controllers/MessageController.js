@@ -38,6 +38,7 @@ module.exports ={
             , [id],
             function (error, results) {
                 if(error) throw error;  
+                console.log(error)
                 res.send({ 
                     success: true, 
                     message: 'Message Data Found',
@@ -50,9 +51,9 @@ module.exports ={
 
     add(req,res){
         let data = {
+            name : req.body.name,
             description : req.body.description,
             relation : req.body.relation,
-            guest_id : req.body.guest_id,
             create_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         pool.getConnection(function(err, connection) {
@@ -67,6 +68,7 @@ module.exports ={
                 res.send({ 
                     success: true, 
                     message: 'Message Data Saved',
+                    data: data
                 });
             });
             connection.release();
@@ -75,9 +77,9 @@ module.exports ={
 
     update(req,res){
         let dataEdit = {
+            name : req.body.name,
             description : req.body.description,
             relation : req.body.relation,
-            guest_id : req.body.guest_id,
             update_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         let id = req.body.id
