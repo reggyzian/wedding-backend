@@ -13,7 +13,7 @@ module.exports ={
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM message;
+                SELECT * FROM message order by message_id desc;
                 `
             , function (error, results) {
                 if(error) throw error;  
