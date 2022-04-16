@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { Message } = require('../controllers/Index');
 
-router.get('/message', Message.list);
-router.get('/message/:id', Message.load);
-router.post('/message/add', Message.add);
-router.post('/message/update', Message.update);
-router.post('/message/delete/', Message.delete);
+router.get('/', Message.list);
+router.get('/:id', Message.load);
+router.post('/add', Message.add);
+router.post('/update', Message.update);
+router.post('/delete/', Message.delete);
 
 module.exports = router;
