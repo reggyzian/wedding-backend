@@ -48,7 +48,7 @@ module.exports ={
                     res.send({ 
                         success: true, 
                         message: 'Guest Data Found',
-                        data: results
+                        data: results[0]
                     });   
                 }
             });
