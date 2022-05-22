@@ -8,7 +8,7 @@ pool.on('error',(err)=> {
 
 module.exports ={
 
-    list(req, res){
+    list(res){
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(

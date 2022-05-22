@@ -8,7 +8,7 @@ pool.on('error',(err)=> {
 
 module.exports ={
 
-    list(req, res){
+    list(res){
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
@@ -16,7 +16,7 @@ module.exports ={
                 SELECT * FROM guest;
                 `
             , function (error, results) {
-                if(error) throw error;  
+                if(error) throw error;
                 res.send({ 
                     success: true, 
                     message: 'Success Load Data',
@@ -33,16 +33,24 @@ module.exports ={
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM guest WHERE guest_id = ?;
+                SELECT * FROM guest WHERE name = ?;
                 `
             , [id],
             function (error, results) {
-                if(error) throw error;  
-                res.send({ 
-                    success: true, 
-                    message: 'Guest Data Found',
-                    data: results
-                });
+                if(error) throw error;
+                if(results.length === 0){
+                    res.send({ 
+                        success: false, 
+                        message: 'Guest Data Not Found',
+                        data: results
+                    });
+                }else{
+                    res.send({ 
+                        success: true, 
+                        message: 'Guest Data Found',
+                        data: results
+                    });   
+                }
             });
             connection.release();
         })
@@ -52,6 +60,7 @@ module.exports ={
         let data = {
             name : req.body.name,
             attend : req.body.attend,
+            people : req.body.people,
             create_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
         pool.getConnection(function(err, connection) {
@@ -74,20 +83,20 @@ module.exports ={
 
     update(req,res){
         let dataEdit = {
-            name : req.body.name,
             attend : req.body.attend,
+            people : req.body.people,
             update_dtm : new Date().toISOString().replace("T"," ").substring(0, 19)
         }
-        let id = req.body.id
+        let id = req.body.name
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                UPDATE guest SET ? WHERE guest_id = ?;
+                UPDATE guest SET ? WHERE name = ?;
                 `
             , [dataEdit, id],
             function (error, results) {
-                if(error) throw error;  
+                if(error) throw error;
                 res.send({ 
                     success: true, 
                     message: 'Guest Data Updated',
