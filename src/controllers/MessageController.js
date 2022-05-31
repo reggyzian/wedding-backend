@@ -1,6 +1,6 @@
 const config = require('../configs/Database');
-const mysql = require('mysql');
-const pool = mysql.createPool(config);
+const Pool = require('pg').Pool;
+const pool = new Pool(config);
 
 pool.on('error',(err)=> {
     console.error(err);
