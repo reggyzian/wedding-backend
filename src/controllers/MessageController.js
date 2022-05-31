@@ -18,7 +18,8 @@ module.exports ={
             if (results.rowCount === 0) {
                 res.send({ 
                     success: false, 
-                    message: 'No Data Found'
+                    message: 'No Data Found',
+                    data: results.rows
                 });
             }else{
                 res.send({ 
